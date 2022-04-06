@@ -1,0 +1,24 @@
+{
+  "name": "deep-focus-trap",
+  "version": "1.0.0",
+  "description": "A focus trap library that pierces that shadow dom. So you can use it with native web components. Deep Focus Trap  is a lightwieght library written in vanilla js with only one dependency (that is tree-shakable if not in use).",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docs": "node_modules/.bin/jsdoc2md index.js",
+    "build": "babel src -d dist"
+  },
+  "author": "mcqua007",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/cli": "^7.17.6",
+    "@babel/core": "^7.17.8",
+    "@babel/preset-env": "^7.16.11"
+  },
+  "dependencies": {
+    "focus-trap": "^6.7.3",
+    "jsdoc-to-markdown": "^7.1.1",
+    "query-selector-shadow-dom": "^1.0.0",
+    "shadow-dom-utils": "^0.5.0"
+  }
+}
