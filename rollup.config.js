@@ -1,24 +1,25 @@
-import { terser } from 'rollup-plugin-terser';
-import filesize from 'rollup-plugin-filesize';
+import { terser } from 'rollup-plugin-terser'
+import filesize from 'rollup-plugin-filesize'
+import { nodeResolve } from '@rollup/plugin-node-resolve'
 
 export default [
   {
     input: 'src/index.js',
-    plugins: [terser(), filesize()],
+    plugins: [nodeResolve(), terser(), filesize()],
     output: {
       sourcemap: true, //can pass 'inline' for inline source maps
       file: 'dist/deep-focus.min.js',
       format: 'umd',
-      name: '$',
+      name: 'deepFocus',
     },
   },
   {
     input: 'src/index.js',
-    plugins: [terser(), filesize()],
+    plugins: [nodeResolve(), terser(), filesize()],
     output: {
       sourcemap: true, //can pass 'inline' for inline source maps
       file: 'dist/deep-focus.esm.min.js',
       format: 'es',
     },
   },
-];
+]

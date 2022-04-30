@@ -2,7 +2,7 @@
   "name": "deep-focus-trap",
   "version": "1.0.0",
   "description": "A focus trap library that pierces that shadow dom. So you can use it with native web components. Deep Focus Trap  is a lightwieght library written in vanilla js with only one dependency (that is tree-shakable if not in use).",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "build": "npx rollup -c",
     "bump": "npx rollup -c && npm version patch --no-git-tag-version",
@@ -21,6 +21,7 @@
     "@babel/plugin-transform-runtime": "^7.17.10",
     "@babel/preset-env": "^7.17.10",
     "@babel/preset-react": "^7.16.7",
+    "@rollup/plugin-node-resolve": "^13.2.1",
     "eslint": "^8.14.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^8.5.0",
