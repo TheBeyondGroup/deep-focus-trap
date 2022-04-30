@@ -1,4 +1,4 @@
-import { querySelectorAll } from 'shadow-dom-utils';
+import { querySelectorAll } from 'shadow-dom-utils'
 
 /**
  * @description used to trap focus on a group of elements, can be an unordered list of elements and can also pierce the shadow dom (though has trouble preserving order if elements are of different type due to limitations with query-shadow-dom library)
@@ -15,21 +15,25 @@ class deepFocus {
    * @param {boolean} [config.unordered=false] - Allows for elements to be in an order in the dom. Then follows the order of appearance in the focusableElements array instead.
    */
   constructor(config) {
-    this.TAB = 9;
-    this.ESC = 27;
+    this.TAB = 9
+    this.ESC = 27
     this.FOCUSABLE_ELEMENT_SELECTORS =
-      'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, [tabindex="0"], button:not([tabindex="-1"]) [contenteditable]';
-    this.el = typeof config.el === 'string'? document.querySelector(config.el) : config.el;
-    this.focusElement = config.focusElement;
-    this.returnFocus = config.returnFocus ?? true;
-    this.escCallback = config.escCallback;
-    this.deep = config.deep;
-    this.listener = this.listener.bind(this);
-    this.includeActiveElement = config.includeActiveElement ?? false;
-    this.unordered = config.unordered || this.includeActiveElement ? true : false;
+      'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, [tabindex="0"], button:not([tabindex="-1"]) [contenteditable]'
+    this.el =
+      typeof config.el === 'string'
+        ? document.querySelector(config.el)
+        : config.el
+    this.focusElement = config.focusElement
+    this.returnFocus = config.returnFocus ?? true
+    this.escCallback = config.escCallback
+    this.deep = config.deep
+    this.listener = this.listener.bind(this)
+    this.includeActiveElement = config.includeActiveElement ?? false
+    this.unordered =
+      config.unordered || this.includeActiveElement ? true : false
     if (this.unordered) {
-      this.index = 1;
-      this.lastFocusedIndex = 0;
+      this.index = 1
+      this.lastFocusedIndex = 0
     }
   }
 
@@ -38,7 +42,7 @@ class deepFocus {
    * @returns {HTMLElement[] | NodeList} A list of elements that focusTrap will cycle focus on
    */
   get elements() {
-    return this.focusableElements;
+    return this.focusableElements
   }
 
   /**
@@ -46,9 +50,9 @@ class deepFocus {
    * @param {HTMLElement} [el] An element to set focus upon the deactivation of the focus trap
    */
   setReturnFocusEl(el) {
-    let focusEl = document.activeElement;
-    focusEl = !!focusEl.shadowRoot ? focusEl.shadowRoot.activeElement : focusEl;
-    this.previousFocusedEl = el ?? focusEl;
+    let focusEl = document.activeElement
+    focusEl = !!focusEl.shadowRoot ? focusEl.shadowRoot.activeElement : focusEl
+    this.previousFocusedEl = el ?? focusEl
   }
 
   /**
@@ -59,7 +63,7 @@ class deepFocus {
    * @param {HTMLElement[] | NodeList} [els] An array of elements or Nodelist of the elements to cycle through in the focus trap.
    */
   updateElements(els) {
-    this.setElements(els);
+    this.setElements(els)
   }
 
   /**
@@ -70,15 +74,20 @@ class deepFocus {
    */
   setElements(els) {
     if (this.deep) {
-      this.focusableElements = els ?? querySelectorAll(this.FOCUSABLE_ELEMENT_SELECTORS, this.el);
+      this.focusableElements =
+        els ?? querySelectorAll(this.FOCUSABLE_ELEMENT_SELECTORS, this.el)
     } else {
-      this.focusableElements = els ?? this.el.querySelectorAll(this.FOCUSABLE_ELEMENT_SELECTORS);
+      this.focusableElements =
+        els ?? this.el.querySelectorAll(this.FOCUSABLE_ELEMENT_SELECTORS)
     }
 
-    this.firstFocusableEl = this.focusableElements[0];
-    this.lastFocusableEl = this.focusableElements[this.focusableElements.length - 1];
-    this.elementToFocus = this.focusElement ? this.focusElement : this.firstFocusableEl;
-    this.setReturnFocusEl();
+    this.firstFocusableEl = this.focusableElements[0]
+    this.lastFocusableEl =
+      this.focusableElements[this.focusableElements.length - 1]
+    this.elementToFocus = this.focusElement
+      ? this.focusElement
+      : this.firstFocusableEl
+    this.setReturnFocusEl()
   }
 
   /**
@@ -90,28 +99,28 @@ class deepFocus {
    * @private
    */
   listener(e) {
-    var currentFocusedEl = document.activeElement;
+    var currentFocusedEl = document.activeElement
     if (!!currentFocusedEl.shadowRoot) {
-      currentFocusedEl = currentFocusedEl.shadowRoot.activeElement;
+      currentFocusedEl = currentFocusedEl.shadowRoot.activeElement
     }
 
     if (e.keyCode === this.TAB) {
       if (!this.unordered) {
         if (e.shiftKey && currentFocusedEl === this.firstFocusableEl) {
-          e.preventDefault();
-          this.lastFocusableEl.focus();
+          e.preventDefault()
+          this.lastFocusableEl.focus()
         } else if (!e.shiftKey && currentFocusedEl === this.lastFocusableEl) {
-          e.preventDefault();
-          this.firstFocusableEl.focus();
+          e.preventDefault()
+          this.firstFocusableEl.focus()
         }
       } else {
-        e.preventDefault();
-        this.handleUnorderedFocus(e);
+        e.preventDefault()
+        this.handleUnorderedFocus(e)
       }
     } else if (e.keyCode === this.ESC) {
       if (this.escCallback) {
-        this.escCallback();
-        this.deactivate();
+        this.escCallback()
+        this.deactivate()
       }
     }
   }
@@ -121,19 +130,21 @@ class deepFocus {
    * the focusTrap element or window for unorderedelements
    */
   activate() {
-    this.setElements();
+    this.setElements()
     if (this.focusableElements.length > 0) {
       if (this.includeActiveElement) {
-        let el = document.activeElement;
-        let currentFocusedEl = !!el.shadowRoot ? el.shadowRoot.activeElement : el;
-        this.setElements([...this.elements, currentFocusedEl]);
+        let el = document.activeElement
+        let currentFocusedEl = !!el.shadowRoot
+          ? el.shadowRoot.activeElement
+          : el
+        this.setElements([...this.elements, currentFocusedEl])
       }
-      this.elementToFocus.focus();
-      console.log(this.elementToFocus);
+      this.elementToFocus.focus()
+      console.log(this.elementToFocus)
       if (!this.unordered) {
-        this.el.addEventListener('keydown', this.listener);
+        this.el.addEventListener('keydown', this.listener)
       } else {
-        window.addEventListener('keydown', this.listener);
+        window.addEventListener('keydown', this.listener)
       }
     }
   }
@@ -144,13 +155,13 @@ class deepFocus {
    */
   deactivate() {
     if (!this.unordered) {
-      this.el.removeEventListener('keydown', this.listener);
+      this.el.removeEventListener('keydown', this.listener)
     } else {
-      window.removeEventListener('keydown', this.listener);
+      window.removeEventListener('keydown', this.listener)
     }
 
     if (this.returnFocus) {
-      this.previousFocusedEl.focus();
+      this.previousFocusedEl.focus()
     }
   }
 
@@ -160,23 +171,24 @@ class deepFocus {
    */
   handleUnorderedFocus(e) {
     if (e.shiftKey) {
-      this.index = this.index < 0 ? this.focusableElements.length + 1 : this.index;
+      this.index =
+        this.index < 0 ? this.focusableElements.length + 1 : this.index
       if (this.index >= this.lastFocusedIndex) {
-        this.index -= 2;
+        this.index -= 2
       }
-      this.focusableElements[this.index].focus();
-      this.lastFocusedIndex = this.index;
-      this.index -= 1;
+      this.focusableElements[this.index].focus()
+      this.lastFocusedIndex = this.index
+      this.index -= 1
     } else {
-      this.index = this.index === this.focusableElements.length ? 0 : this.index;
+      this.index = this.index === this.focusableElements.length ? 0 : this.index
       if (this.index !== 0 && this.index <= this.lastFocusedIndex) {
-        this.index += 2;
+        this.index += 2
       }
-      this.focusableElements[this.index].focus();
-      this.lastFocusedIndex = this.index;
-      this.index += 1;
+      this.focusableElements[this.index].focus()
+      this.lastFocusedIndex = this.index
+      this.index += 1
     }
   }
 }
 
-export { deepFocus };
+export { deepFocus }
