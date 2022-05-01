@@ -8,7 +8,7 @@ export default [
     plugins: [nodeResolve(), terser(), filesize()],
     output: {
       sourcemap: true, //can pass 'inline' for inline source maps
-      file: 'dist/deep-focus.min.js',
+      file: 'dist/deep-focus.umd.min.js',
       format: 'umd',
       name: 'deepFocus',
     },
