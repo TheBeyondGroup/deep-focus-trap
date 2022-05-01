@@ -1,6 +1,6 @@
 {
   "name": "deep-focus-trap",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "A focus trap library that pierces that shadow dom. So you can use it with native web components. Deep Focus Trap  is a lightwieght library written in vanilla js with only one dependency (that is tree-shakable if not in use).",
   "main": "src/index.js",
   "scripts": {
@@ -14,7 +14,38 @@
     "test": "npx jest",
     "test:coverage": "npx jest --config jestconfig.json"
   },
-  "author": "mcqua007",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheBeyondGroup/deep-focus-trap.git"
+  },
+  "keywords": [
+    "focus",
+    "accessibility",
+    "trap",
+    "capture",
+    "keyboard",
+    "modal",
+    "ADA",
+    "compliance",
+    "ShadowDOM",
+    "Shadow",
+    "DOM",
+    "Web Components",
+    "tabbable",
+    "javascript",
+    "JS",
+    "A11Y",
+    "deep",
+    "lit",
+    "lit-element"
+  ],
+  "author": {
+    "name": "Sean McQuaid"
+  },
+  "bugs": {
+    "url": "https://github.com/TheBeyondGroup/deep-focus-trap/issues"
+  },
+  "homepage": "https://github.com/TheBeyondGroup/deep-focus-trap#readme",
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.17.10",
