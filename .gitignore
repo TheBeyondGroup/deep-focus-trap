@@ -62,3 +62,4 @@ temp
 TODOs.md
 package-lock.json
 *ignore-*
+*dist
