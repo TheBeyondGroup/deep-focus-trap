@@ -91,6 +91,6 @@ let focusTrap = new deepFocusTrap({
 });
 
 ```
-**Note: the* `focusTrap` *class doesn't have this option*
+**Note: the* `focusTrap` *class doesn't have the **`deep`** option*
 
 You can view the API documentation [here](./docs.md)
