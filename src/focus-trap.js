@@ -7,7 +7,7 @@ class focusTrap {
    * @param {string | HTMLElement} config.el - A selector or element used to trap focus within
    * @param {boolean} [config.returnFocus=true] - An option when set to true returns focus upon deactivation to the last eement that had focus before the trap was activated. Defualts to true.
    * @param {HTMLElement} [config.focusElement] - An element to focus on as soon as the focus trap is activated.
-   * @param {callback} [config.escCallback] - A callback to be called when the user presses the escape key.
+   * @param {callback} [config.escCallback] - A callback to be called when the user presses the escape key. Note his automatically calls deactive() after escCallback
    * @param {boolean} [config.includeActiveElement=false] - Includes element currently in focus when focusTrap is activated within the focusable elements.
    * @param {boolean} [config.unordered=false] - Allows for elements to be in an order in the dom. Then follows the order of appearance in the focusableElements array instead.
    */
