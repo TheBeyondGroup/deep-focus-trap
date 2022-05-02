@@ -80,7 +80,7 @@ const modal = document.querySelector('.modal');
 
 let focusTrap = new deepFocusTrap({
   el: modal, // or '.modal', Required option - A selector or element used to trap focus within
-  deep: false, //default: true - When set to false focusTrap will not peirce the shadowDOM.
+  deep: false, //default: true - When set to false focusTrap will not peirce the Shadow DOM.
   returnFocus: false, //default: true - An option when set to true returns focus upon deactivation to the last eement that had focus before the trap was activated. 
   focusElement: document.querySelector('a.first-focus'), // An element to focus on as soon as the focus trap is activated.
   includeActiveElement: true, //defulat: true -  Includes element currently in focus when focusTrap is activated within the focusable elements.
