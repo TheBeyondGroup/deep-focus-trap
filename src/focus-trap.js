@@ -15,7 +15,7 @@ class focusTrap {
     this.TAB = 9
     this.ESC = 27
     this.FOCUSABLE_ELEMENT_SELECTORS =
-      'a[href], area[href], input:not([disabled]), input:not([hidden]), input:not([hidden="true"]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, [tabindex="0"], button:not([tabindex="-1"]) [contenteditable]'
+      'a[href], area[href], input:not([disabled]):not([hidden]):not([hidden="true"]):not([tabindex="-1"]), textarea:not([disabled]), button:not([disabled]), iframe, object, [tabindex="0"], button:not([tabindex="-1"]) [contenteditable]'
     this.el =
       typeof config.el === 'string'
         ? document.querySelector(config.el)
