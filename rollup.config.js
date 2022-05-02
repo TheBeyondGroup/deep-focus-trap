@@ -8,9 +8,9 @@ export default [
     plugins: [nodeResolve(), terser(), filesize()],
     output: {
       sourcemap: true, //can pass 'inline' for inline source maps
-      file: 'dist/deep-focus.umd.min.js',
+      file: 'dist/deep-focus-trap.umd.min.js',
       format: 'umd',
-      name: 'deepFocus',
+      name: 'deepFocusTrap',
     },
   },
   {
@@ -18,7 +18,26 @@ export default [
     plugins: [nodeResolve(), terser(), filesize()],
     output: {
       sourcemap: true, //can pass 'inline' for inline source maps
-      file: 'dist/deep-focus.esm.min.js',
+      file: 'dist/deep-focus-trap.esm.min.js',
+      format: 'es',
+    },
+  },
+  {
+    input: 'src/focus-trap.js',
+    plugins: [nodeResolve(), terser(), filesize()],
+    output: {
+      sourcemap: true, //can pass 'inline' for inline source maps
+      file: 'dist/focus-trap.umd.min.js',
+      format: 'umd',
+      name: 'focusTrap',
+    },
+  },
+  {
+    input: 'src/focus-trap.js',
+    plugins: [nodeResolve(), terser(), filesize()],
+    output: {
+      sourcemap: true, //can pass 'inline' for inline source maps
+      file: 'dist/focus-trap.esm.min.js',
       format: 'es',
     },
   },
