@@ -13,12 +13,14 @@ class deepFocusTrap extends focusTrap {
    * @param {string | HTMLElement} config.el - A selector or element used to trap focus within
    * @param {boolean} [config.returnFocus=true] - An option when set to true returns focus upon deactivation to the last eement that had focus before the trap was activated. Defualts to true.
    * @param {HTMLElement} [config.focusElement] - An element to focus on as soon as the focus trap is activated.
+   * @param {boolean} [config.deep=true] - When set to false focusTrap will not peirce the shadowDOM.
    * @param {callback} [config.escCallback] - A callback to be called when the user presses the escape key.
    * @param {boolean} [config.includeActiveElement=false] - Includes element currently in focus when focusTrap is activated within the focusable elements.
    * @param {boolean} [config.unordered=false] - Allows for elements to be in an order in the dom. Then follows the order of appearance in the focusableElements array instead.
    */
   constructor(config) {
     super(config)
+    this.deep = config.deep ?? true
   }
 
   /**
@@ -28,8 +30,13 @@ class deepFocusTrap extends focusTrap {
    * @param {HTMLElement[] | NodeList} [els] An array of elements or Nodelist of the elements to cycle through in the focus trap.
    */
   setElements(els) {
-    this.focusableElements =
-      els ?? querySelectorAll(this.FOCUSABLE_ELEMENT_SELECTORS, this.el)
+    if (this.deep === false) {
+      this.focusableElements =
+        els ?? this.el.querySelectorAll(this.FOCUSABLE_ELEMENT_SELECTORS)
+    } else {
+      this.focusableElements =
+        els ?? querySelectorAll(this.FOCUSABLE_ELEMENT_SELECTORS, this.el)
+    }
 
     this.firstFocusableEl = this.focusableElements[0]
     this.lastFocusableEl =
