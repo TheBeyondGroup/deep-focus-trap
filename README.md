@@ -1,6 +1,6 @@
 ## Deep Focus Trap
 
-#### Getting Started
+### Getting Started
 1. Install library using
     ``` bash
     $ npm install deep-focus-trap
@@ -83,7 +83,7 @@ let focusTrap = new deepFocusTrap({
   deep: false, //default: true - When set to false focusTrap will not peirce the Shadow DOM.
   returnFocus: false, //default: true - An option when set to true returns focus upon deactivation to the last eement that had focus before the trap was activated. 
   focusElement: document.querySelector('a.first-focus'), // An element to focus on as soon as the focus trap is activated.
-  includeActiveElement: true, //defulat: true -  Includes element currently in focus when focusTrap is activated within the focusable elements.
+  includeActiveElement: true, //default: true -  Includes element currently in focus when focusTrap is activated within the focusable elements.
   unordered: true, //default: false - Allows for elements to be in an order in the dom. Then follows the order of appearance in the focusableElements array instead.
   escCallback: function(){ // A callback to be called when the user presses the escape key. Note his automatically calls deactive() after escCallback
     modal.style.display = 'none';
@@ -92,5 +92,31 @@ let focusTrap = new deepFocusTrap({
 
 ```
 **Note: the* `focusTrap` *class doesn't have the* `deep` *option*
+
+#### Using UMD version via CDN
+ If you want to use via deep-focus-trap via the `script` tag. We recommend using the UMD version as its more widley supported (You can also use the ES module version using the `type="module` attribute.")
+
+In using the UMD version  you wont import the module but just copy the script tag:
+``` html
+<script src="/deep-focus-trap.umd.js"></script>
+```
+
+Or if you want the basic version (doesn't pierce the shadow DOM) 
+
+``` html
+<script src="/deep-focus-trap.umd.js"></script>
+```
+
+Then to use. Use the `focusTrap` or `deepFocusTrap` function (umd exports to the window)
+
+``` javascript
+const focusTrap = deepFocusTrap({
+  el: '.modal',
+  escCallback: () => { 
+    const modal = document.querySelector('.modal');
+    modal.style.display = 'none';
+  }
+})
+```
 
 You can view the API documentation [here](./docs.md)
