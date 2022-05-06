@@ -104,7 +104,7 @@ In using the UMD version  you wont import the module but just copy the script ta
 Or if you want the basic version (doesn't pierce the shadow DOM) 
 
 ``` html
-<script src="/deep-focus-trap.umd.js"></script>
+<script src="/focus-trap.umd.js"></script>
 ```
 
 Then to use. Use the `focusTrap` or `deepFocusTrap` function (umd exports to the window)
