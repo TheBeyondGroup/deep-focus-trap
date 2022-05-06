@@ -12,7 +12,7 @@
   "scripts": {
     "build": "npx rollup -c",
     "bump": "npx rollup -c && npm version patch --no-git-tag-version",
-    "docs": "npx jsdoc2md ./src/index.js > docs.md",
+    "docs": "npx jsdoc2md ./src/focus-trap.js ./src/index.js > docs.md",
     "format": "npx prettier --write src/index.js",
     "format:check": "npx prettier -c src/index.js",
     "lint": "npx eslint src/index.js",
@@ -20,6 +20,13 @@
     "test": "npx jest",
     "test:coverage": "npx jest --config jestconfig.json"
   },
+  "files": [
+    "README.md",
+    "LICENSE",
+    "src/focus-trap.js",
+    "src/index.js",
+    "dist"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/TheBeyondGroup/deep-focus-trap.git"
