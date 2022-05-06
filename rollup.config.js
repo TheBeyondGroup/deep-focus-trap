@@ -4,7 +4,7 @@ import { nodeResolve } from '@rollup/plugin-node-resolve'
 
 export default [
   {
-    input: 'src/index.js',
+    input: 'src/deep-focus-trap.umd.js',
     plugins: [nodeResolve(), terser(), filesize()],
     output: {
       sourcemap: true, //can pass 'inline' for inline source maps
@@ -19,11 +19,12 @@ export default [
     output: {
       sourcemap: true, //can pass 'inline' for inline source maps
       file: 'dist/deep-focus-trap.esm.min.js',
+      // exports: 'named',
       format: 'es',
     },
   },
   {
-    input: 'src/focus-trap.js',
+    input: 'src/focus-trap.umd.js',
     plugins: [nodeResolve(), terser(), filesize()],
     output: {
       sourcemap: true, //can pass 'inline' for inline source maps
