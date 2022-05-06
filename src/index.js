@@ -31,19 +31,14 @@ class deepFocusTrap extends focusTrap {
    */
   setElements(els) {
     if (this.deep === false) {
-      this.focusableElements =
-        els ?? this.el.querySelectorAll(this.FOCUSABLE_ELEMENT_SELECTORS)
+      this.focusableElements = els ?? this.el.querySelectorAll(this.FOCUSABLE_ELEMENT_SELECTORS)
     } else {
-      this.focusableElements =
-        els ?? querySelectorAll(this.FOCUSABLE_ELEMENT_SELECTORS, this.el)
+      this.focusableElements = els ?? querySelectorAll(this.FOCUSABLE_ELEMENT_SELECTORS, this.el)
     }
 
     this.firstFocusableEl = this.focusableElements[0]
-    this.lastFocusableEl =
-      this.focusableElements[this.focusableElements.length - 1]
-    this.elementToFocus = this.focusElement
-      ? this.focusElement
-      : this.firstFocusableEl
+    this.lastFocusableEl = this.focusableElements[this.focusableElements.length - 1]
+    this.elementToFocus = this.focusElement ? this.focusElement : this.firstFocusableEl
     this.setReturnFocusEl()
   }
 }

@@ -16,17 +16,13 @@ class focusTrap {
     this.ESC = 27
     this.FOCUSABLE_ELEMENT_SELECTORS =
       'a[href], area[href], input:not([disabled]):not([hidden]):not([hidden="true"]):not([tabindex="-1"]), textarea:not([disabled]), button:not([disabled]), iframe, object, [tabindex="0"], button:not([tabindex="-1"]) [contenteditable]'
-    this.el =
-      typeof config.el === 'string'
-        ? document.querySelector(config.el)
-        : config.el
+    this.el = typeof config.el === 'string' ? document.querySelector(config.el) : config.el
     this.focusElement = config.focusElement
     this.returnFocus = config.returnFocus ?? true
     this.escCallback = config.escCallback
     this.listener = this.listener.bind(this)
     this.includeActiveElement = config.includeActiveElement ?? false
-    this.unordered =
-      config.unordered || this.includeActiveElement ? true : false
+    this.unordered = config.unordered || this.includeActiveElement ? true : false
     if (this.unordered) {
       this.index = 1
       this.lastFocusedIndex = 0
@@ -69,15 +65,11 @@ class focusTrap {
    * @param {HTMLElement[] | NodeList} [els] An array of elements or Nodelist of the elements to cycle through in the focus trap.
    */
   setElements(els) {
-    this.focusableElements =
-      els ?? this.el.querySelectorAll(this.FOCUSABLE_ELEMENT_SELECTORS)
+    this.focusableElements = els ?? this.el.querySelectorAll(this.FOCUSABLE_ELEMENT_SELECTORS)
 
     this.firstFocusableEl = this.focusableElements[0]
-    this.lastFocusableEl =
-      this.focusableElements[this.focusableElements.length - 1]
-    this.elementToFocus = this.focusElement
-      ? this.focusElement
-      : this.firstFocusableEl
+    this.lastFocusableEl = this.focusableElements[this.focusableElements.length - 1]
+    this.elementToFocus = this.focusElement ? this.focusElement : this.firstFocusableEl
     this.setReturnFocusEl()
   }
 
@@ -125,9 +117,7 @@ class focusTrap {
     if (this.focusableElements.length > 0) {
       if (this.includeActiveElement) {
         let el = document.activeElement
-        let currentFocusedEl = !!el.shadowRoot
-          ? el.shadowRoot.activeElement
-          : el
+        let currentFocusedEl = !!el.shadowRoot ? el.shadowRoot.activeElement : el
         this.setElements([...this.elements, currentFocusedEl])
       }
       this.elementToFocus.focus()
@@ -162,8 +152,7 @@ class focusTrap {
    */
   handleUnorderedFocus(e) {
     if (e.shiftKey) {
-      this.index =
-        this.index < 0 ? this.focusableElements.length + 1 : this.index
+      this.index = this.index < 0 ? this.focusableElements.length + 1 : this.index
       if (this.index >= this.lastFocusedIndex) {
         this.index -= 2
       }
