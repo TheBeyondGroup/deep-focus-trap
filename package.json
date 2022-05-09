@@ -19,7 +19,7 @@
     "lint:fix": "npx eslint --fix src/index.js",
     "test": "npx jest",
     "test:coverage": "npx jest --config jestconfig.json",
-    "serve": "npx vite serve examples/"
+    "serve": "npx vite"
   },
   "files": [
     "README.md",
