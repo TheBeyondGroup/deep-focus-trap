@@ -21,6 +21,10 @@
     "test:coverage": "npx jest --config jestconfig.json",
     "serve": "npx vite"
   },
+  "browserslist": [
+    "defaults",
+    "not iE 11"
+  ],
   "files": [
     "README.md",
     "LICENSE",
