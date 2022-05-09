@@ -23,7 +23,7 @@
   },
   "browserslist": [
     "defaults",
-    "not iE 11"
+    "not IE 11"
   ],
   "files": [
     "README.md",
