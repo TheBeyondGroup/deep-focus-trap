@@ -7,12 +7,99 @@
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="./css/app.css" />
+    <link rel="stylesheet" href="./css/atom-one-dark.min.css" />
   </head>
   <body>
+    <header class="container px-4 mx-auto my-12 text-center md:my-16">
+      <h1 class="text-3xl">Deep Focus Trap Examples</h1>
+    </header>
     <section class="container px-4 mx-auto my-12 md:my-16">
-      <h3 class="text-3xl">Basic Trap 6</h3>
-    </section>
+      <div class="flex flex-col justify-center gap-4 lg:flex-row lg:justify-between">
+        <div class="flex flex-col w-full gap-4 lg:max-w-lg">
+          <h2 class="text-2xl">Basic Modal Demo</h2>
+          <p class="w-full">
+            Example of using deepFocusTrap on a modal. When you open the modal the focus gets
+            "trapped" inside of the modal.This allows the user to tab through the modal's focusable
+            elements until they close the modal (and the focus trap deactivates). Or the user clicks
+            the escape key which executes the callback then deactivates the focus trap.
+          </p>
+          <p>
+            In the example below the escCallback hides the modal, then deepFocusTrap handles
+            returning to the previously focused element before the modal was opened.
+          </p>
+          <div class="flex items-center justify-between">
+            <button class="btn-primary js-modal-open max-w-[250px]">Open Modal</button>
+          </div>
+        </div>
+        <pre class="lg:flex w-full lg:justify-end overflow-auto lg:max-h-[325px]">
+          <code class="rounded-lg language-javascript">
+  import { focusTrap } from 'deep-focus-trap/dom'
+  const query = (selector) => document.querySelector(selector);
+  const modal = query('.modal')
+  const openModalBtn = query('.open-modal-btn');
+  const closeModalBtn = query('.close-modal-btn');
+  const focusTrap = new focusTrap({
+    el: '.modal',
+    escCallback: function (){
+      modal.style.display = 'none';
+    }
+  });
 
+  //open modal event
+  openModalBtn.onclick = function(){
+     modal.style.display = 'block';
+     focusTrap.activate();
+  };
+  
+  //close modal event
+  closeModalBtn.onclick = function(){
+     modal.style.display = 'none';
+     focusTrap.deactivate();
+  };
+          </code>
+        </pre>
+      </div>
+      <div
+        class="absolute inset-0 flex items-center justify-center w-full h-full js-modal-wrapper bg-black/75"
+        aria-hidden="true"
+      >
+        <div
+          class="js-modal bg-white shadow-lg rounded-md flex flex-col p-3 modal w-full max-w-[500px] opacity-[1]"
+        >
+          <header class="flex justify-between w-full">
+            <h3 class="text-lg font-bold">Modal</h3>
+            <button class="js-modal-close">
+              <svg
+                width="36"
+                height="36"
+                viewBox="0 0 36 36"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <line x1="9.83207" y1="8.80392" x2="27.1746" y2="26.1464" stroke="currentColor" />
+                <line x1="27.5293" y1="9.15702" x2="9.84311" y2="26.8432" stroke="currentColor" />
+              </svg>
+            </button>
+          </header>
+          <ul>
+            <li class="mt-1"><a class="focus:underline" href="https://google.com">Google</a></li>
+            <li class="mt-1"><a class="focus:underline" href="https://github.com">Github</a></li>
+            <li class="mt-1"><a class="focus:underline" href="https://apple.com">Apple</a></li>
+            <li class="mt-1">
+              <a class="focus:underline" href="https://microsoft.com">Microsoft</a>
+            </li>
+            <li class="mt-1">
+              <a class="focus:underline" href="https://techcrunch.com">Tech Crunch</a>
+            </li>
+          </ul>
+          <button class="mt-3 js-click-me btn-primary">Click Me!</button>
+        </div>
+      </div>
+    </section>
+    <script src="./js/highlight.min.js"></script>
     <script src="./js/index.js" async defer type="module"></script>
+    <script>
+      hljs.highlightAll()
+    </script>
   </body>
 </html>
