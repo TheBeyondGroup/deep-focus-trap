@@ -1,3 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+[aria-hidden='true'] {
+  @apply hidden;
+}
+
+.flex-center {
+  @apply flex items-center justify-center;
+}
+
+.btn-primary {
+  @apply bg-indigo-700 p-2 flex-center shadow-md rounded-lg text-white hover:translate-y-[-1px] hover:shadow-lg focus:translate-y-[-1px] active:translate-y-[1px] transition-all focus:shadow-lg;
+}
+
+.btn-outline {
+  @apply flex-center p-2 text-indigo-700 border border-indigo-700 rounded-lg;
+}
+
+.btn-outline-secondary {
+  @apply flex-center gap-2 text-gray-400 border border-gray-400 rounded-lg p-2;
+}
