@@ -36,6 +36,12 @@
     "type": "git",
     "url": "git+https://github.com/TheBeyondGroup/deep-focus-trap.git"
   },
+  "files": [
+    "readme.md",
+    "LICENSE",
+    "src",
+    "dist"
+  ],
   "keywords": [
     "focus",
     "accessibility",
