@@ -31,16 +31,16 @@ used to trap focus on a group of elements, can be an unordered list of elements 
 | --- | --- | --- | --- |
 | config | <code>object</code> |  |  |
 | config.el | <code>string</code> \| <code>HTMLElement</code> |  | A selector or element used to trap focus within |
-| [config.returnFocus] | <code>boolean</code> | <code>true</code> | An option when set to true returns focus upon deactivation to the last eement that had focus before the trap was activated. Defualts to true. |
+| [config.returnFocus] | <code>boolean</code> | <code>true</code> | An option when set to true returns focus upon deactivation to the last element that had focus before the trap was activated. Defaults to true. |
 | [config.focusElement] | <code>HTMLElement</code> |  | An element to focus on as soon as the focus trap is activated. |
-| [config.escCallback] | <code>callback</code> |  | A callback to be called when the user presses the escape key. Note his automatically calls deactive() after escCallback |
+| [config.escCallback] | <code>callback</code> |  | A callback to be called when the user presses the escape key. Note his automatically calls deactivate() after escCallback |
 | [config.includeActiveElement] | <code>boolean</code> | <code>false</code> | Includes element currently in focus when focusTrap is activated within the focusable elements. |
 | [config.unordered] | <code>boolean</code> | <code>false</code> | Allows for elements to be in an order in the dom. Then follows the order of appearance in the focusableElements array instead. |
 
 <a name="focusTrap+elements"></a>
 
 ### focusTrap.elements ⇒ <code>Array.&lt;HTMLElement&gt;</code> \| <code>NodeList</code>
-Gets the focuable elements that focuTrap will cycle focus onn
+Gets the focusable elements that focusTrap will cycle focus onn
 
 **Kind**: instance property of [<code>focusTrap</code>](#focusTrap)  
 **Returns**: <code>Array.&lt;HTMLElement&gt;</code> \| <code>NodeList</code> - A list of elements that focusTrap will cycle focus on  
@@ -84,7 +84,7 @@ config.el selector to get its focusable children or takes a custom list of eleme
 
 ### focusTrap.activate()
 Activates the focus trap, by listening for keydown events on
-the focusTrap element or window for unorderedelements
+the focusTrap element or window for unordered elements
 
 **Kind**: instance method of [<code>focusTrap</code>](#focusTrap)  
 <a name="focusTrap+deactivate"></a>
@@ -107,7 +107,7 @@ before focus trap was activated (if the config.returnFocus option is set to true
 
 ### new deepFocusTrap(config)
 Used as a focus trap that can pierce the shadow dom. Meaning if you are using native
-web components and you have a componenet within a component. This focus trap will be able to peirce through the shadow dom and make a focus trap
+web components and you have a component within a component. This focus trap will be able to peirce through the shadow dom and make a focus trap
 out of the child components as well.
 
 
@@ -115,7 +115,7 @@ out of the child components as well.
 | --- | --- | --- | --- |
 | config | <code>object</code> |  |  |
 | config.el | <code>string</code> \| <code>HTMLElement</code> |  | A selector or element used to trap focus within |
-| [config.returnFocus] | <code>boolean</code> | <code>true</code> | An option when set to true returns focus upon deactivation to the last eement that had focus before the trap was activated. Defualts to true. |
+| [config.returnFocus] | <code>boolean</code> | <code>true</code> | An option when set to true returns focus upon deactivation to the last element that had focus before the trap was activated. Defaults to true. |
 | [config.focusElement] | <code>HTMLElement</code> |  | An element to focus on as soon as the focus trap is activated. |
 | [config.deep] | <code>boolean</code> | <code>true</code> | When set to false focusTrap will not peirce the shadowDOM. |
 | [config.escCallback] | <code>callback</code> |  | A callback to be called when the user presses the escape key. |
