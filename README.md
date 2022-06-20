@@ -94,7 +94,7 @@ let focusTrap = new deepFocusTrap({
 **Note: the* `focusTrap` *class doesn't have the* `deep` *option*
 
 #### Using UMD version via CDN
- If you want to use via deep-focus-trap via the `script` tag. We recommend using the UMD version as its more widely supported (You can also use the ES module version using the `type="module` attribute.") You can find the CDn [here](https://www.jsdelivr.com/package/npm/deep-focus-trap?path=dist)
+ If you want to use via deep-focus-trap via the `script` tag. We recommend using the UMD version as its more widely supported (You can also use the ES module version using the `type="module` attribute.") You can find the CDN scripts [here](https://www.jsdelivr.com/package/npm/deep-focus-trap?path=dist)
 
 In using the UMD version  you wont import the module but just copy the script tag:
 ``` html
