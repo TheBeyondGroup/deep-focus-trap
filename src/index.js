@@ -3,7 +3,7 @@ import { focusTrap } from './focus-trap'
 
 /**
  * @description Used as a focus trap that can pierce the shadow dom. Meaning if you are using native
- * web components and you have a componenet within a component. This focus trap will be able to peirce through the shadow dom and make a focus trap
+ * web components and you have a component within a component. This focus trap will be able to peirce through the shadow dom and make a focus trap
  * out of the child components as well.
  *
  */
@@ -11,7 +11,7 @@ class deepFocusTrap extends focusTrap {
   /**
    * @param {object} config
    * @param {string | HTMLElement} config.el - A selector or element used to trap focus within
-   * @param {boolean} [config.returnFocus=true] - An option when set to true returns focus upon deactivation to the last eement that had focus before the trap was activated. Defualts to true.
+   * @param {boolean} [config.returnFocus=true] - An option when set to true returns focus upon deactivation to the last element that had focus before the trap was activated. Defaults to true.
    * @param {HTMLElement} [config.focusElement] - An element to focus on as soon as the focus trap is activated.
    * @param {boolean} [config.deep=true] - When set to false focusTrap will not peirce the shadowDOM.
    * @param {callback} [config.escCallback] - A callback to be called when the user presses the escape key.

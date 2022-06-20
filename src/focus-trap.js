@@ -5,9 +5,9 @@ class focusTrap {
   /**
    * @param {object} config
    * @param {string | HTMLElement} config.el - A selector or element used to trap focus within
-   * @param {boolean} [config.returnFocus=true] - An option when set to true returns focus upon deactivation to the last eement that had focus before the trap was activated. Defualts to true.
+   * @param {boolean} [config.returnFocus=true] - An option when set to true returns focus upon deactivation to the last element that had focus before the trap was activated. Defaults to true.
    * @param {HTMLElement} [config.focusElement] - An element to focus on as soon as the focus trap is activated.
-   * @param {callback} [config.escCallback] - A callback to be called when the user presses the escape key. Note his automatically calls deactive() after escCallback
+   * @param {callback} [config.escCallback] - A callback to be called when the user presses the escape key. Note his automatically calls deactivate() after escCallback
    * @param {boolean} [config.includeActiveElement=false] - Includes element currently in focus when focusTrap is activated within the focusable elements.
    * @param {boolean} [config.unordered=false] - Allows for elements to be in an order in the dom. Then follows the order of appearance in the focusableElements array instead.
    */
@@ -22,7 +22,7 @@ class focusTrap {
     this.escCallback = config.escCallback
     this.listener = this.listener.bind(this)
     this.includeActiveElement = config.includeActiveElement ?? false
-    this.unordered = config.unordered || this.includeActiveElement ? true : false
+    this.unordered = !!(config.unordered || this.includeActiveElement)
     if (this.unordered) {
       this.index = 1
       this.lastFocusedIndex = 0
@@ -30,7 +30,7 @@ class focusTrap {
   }
 
   /**
-   *  Gets the focuable elements that focuTrap will cycle focus onn
+   *  Gets the focusable elements that focusTrap will cycle focus onn
    * @returns {HTMLElement[] | NodeList} A list of elements that focusTrap will cycle focus on
    */
   get elements() {
@@ -43,7 +43,7 @@ class focusTrap {
    */
   setReturnFocusEl(el) {
     let focusEl = document.activeElement
-    focusEl = !!focusEl.shadowRoot ? focusEl.shadowRoot.activeElement : focusEl
+    focusEl = focusEl.shadowRoot ? focusEl.shadowRoot.activeElement : focusEl
     this.previousFocusedEl = el ?? focusEl
   }
 
@@ -82,8 +82,8 @@ class focusTrap {
    * @private
    */
   listener(e) {
-    var currentFocusedEl = document.activeElement
-    if (!!currentFocusedEl.shadowRoot) {
+    let currentFocusedEl = document.activeElement
+    if (currentFocusedEl.shadowRoot) {
       currentFocusedEl = currentFocusedEl.shadowRoot.activeElement
     }
 
@@ -110,18 +110,17 @@ class focusTrap {
 
   /**
    * Activates the focus trap, by listening for keydown events on
-   * the focusTrap element or window for unorderedelements
+   * the focusTrap element or window for unordered elements
    */
   activate() {
     this.setElements()
     if (this.focusableElements.length > 0) {
       if (this.includeActiveElement) {
-        let el = document.activeElement
-        let currentFocusedEl = !!el.shadowRoot ? el.shadowRoot.activeElement : el
+        const el = document.activeElement
+        const currentFocusedEl = el.shadowRoot ? el.shadowRoot.activeElement : el
         this.setElements([...this.elements, currentFocusedEl])
       }
       this.elementToFocus.focus()
-      console.log(this.elementToFocus)
       if (!this.unordered) {
         this.el.addEventListener('keydown', this.listener)
       } else {
