@@ -2,6 +2,7 @@
 
 ### Getting Started
 1. Install library using
+
     ``` bash
     $ npm install deep-focus-trap
     ```
@@ -57,11 +58,11 @@ closeModalBtn.onclick = function(){
 
 #### Piercing the Shadow DOM
 
-The main import has two classes for import, ` deepFocusTrap` and it's parent `focusTrap`. If you don't need to peirce the shadowDom you should import the parent class from the dom module  (i.e. `import { focusTrap } from 'deep-focus-trap/dom'`). This reduces the module size significantly as you aren't importing the dependency required for piercing th shadow dom. The class that pierces the shadow dom is `deepfocusTrap`. You can use this class by importing it from the main module like so: `import { deepFocusTrap } from 'deep-focus-trap'`. 
+The main import has two classes for import ` deepFocusTrap` and its parent `focusTrap`. If you don't need to pierce the shadow DOM you should import the parent class from the dom module  (i.e. `import { focusTrap } from 'deep-focus-trap/dom'`). This reduces the module size significantly as you won't import the dependency required to pierce the shadow DOM. The class that pierces the shadow DOM is `deepfocusTrap`. You can use this class by importing it from the main module like so: `import { deepFocusTrap } from 'deep-focus-trap'`. 
 
-Both `focusTrap` and `deepFocusTrap` have he same functionality and work in the same way except `deepFocusTrap` is able to pierce the shadow DOM. The reasons there are two classes broken into different modules is to enable tree-shaking, which greatly reduces the imported bundle size (**850B** compared to **12.5KB** minified & gzipped) when you only need the regular focusTrap and don't need to pierce the shadowDOM.
+Both `focusTrap` and `deepFocusTrap` have the same functionality and work in the same way except `deepFocusTrap` is able to pierce the shadow DOM. The reasons there are two classes broken into different modules is to enable tree-shaking, which greatly reduces the imported bundle size (**850B** compared to **12.5KB** minified & gzipped) when you only need the regular focusTrap and don't need to pierce the shadowDOM.
 
-If you your project is already using the `deepFocusTrap` class in other places your are already going to import the extra dependency so you can go ahead and  just import the `focusTrap` class from the main module (i.e. `import { focusTrap } from 'deep-focus-trap'`) or you can use the `deepFocusTrap` class and set the `config.deep` option to `false`. Like so:
+If your project is already using the `deepFocusTrap` class in other places you are already going to import the extra dependency so you can import the `focusTrap` class from the main module (i.e. `import { focusTrap } from 'deep-focus-trap'`) or you can use the `deepFocusTrap` class and set the `config.deep` option to `false`. Like so:
 
 ``` javascript
 import { deepFocusTrap } from 'deep-focus-trap';
