@@ -1,7 +1,7 @@
 /**
  * @description used to trap focus on a group of elements, can be an unordered list of elements and can also pierce the shadow dom (though has trouble preserving order if elements are of different type due to limitations with query-shadow-dom library)
  */
- class focusTrap {
+class focusTrap {
   /**
    * @param {object} config
    * @param {string | HTMLElement} config.el - A selector or element used to trap focus within
