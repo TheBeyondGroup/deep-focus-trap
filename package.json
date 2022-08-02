@@ -1,6 +1,6 @@
 {
   "name": "deep-focus-trap",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A focus trap library that pierces that shadow dom. So you can use it with native web components. Deep Focus Trap  is a lightweight library written in vanilla js with only one dependency (that is tree-shakable if not in use).",
   "main": "./src/index.js",
   "exports": {
