@@ -1,7 +1,7 @@
 /**
  * @description used to trap focus on a group of elements, can be an unordered list of elements and can also pierce the shadow dom (though has trouble preserving order if elements are of different type due to limitations with query-shadow-dom library)
  */
-class focusTrap {
+ class focusTrap {
   /**
    * @param {object} config
    * @param {string | HTMLElement} config.el - A selector or element used to trap focus within
@@ -23,6 +23,7 @@ class focusTrap {
     this.listener = this.listener.bind(this)
     this.includeActiveElement = config.includeActiveElement ?? false
     this.unordered = !!(config.unordered || this.includeActiveElement)
+    this.active = false
     if (this.unordered) {
       this.index = 1
       this.lastFocusedIndex = 0
@@ -115,6 +116,7 @@ class focusTrap {
   activate() {
     this.setElements()
     if (this.focusableElements.length > 0) {
+      this.active = true
       if (this.includeActiveElement) {
         const el = document.activeElement
         const currentFocusedEl = el.shadowRoot ? el.shadowRoot.activeElement : el
@@ -134,13 +136,14 @@ class focusTrap {
    * before focus trap was activated (if the config.returnFocus option is set to true - which is the default)
    */
   deactivate() {
+    this.active = false
     if (!this.unordered) {
       this.el.removeEventListener('keydown', this.listener)
     } else {
       window.removeEventListener('keydown', this.listener)
     }
 
-    if (this.returnFocus) {
+    if (this.returnFocus && this.previousFocusedEl !== undefined) {
       this.previousFocusedEl.focus()
     }
   }
